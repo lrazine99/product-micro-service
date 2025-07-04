@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.micrommerce.model.ProductModel;
 
 @Repository
-public interface ProductInterface extends JpaRepository<ProductModel, Integer> {
+public interface ProductRepositoryInterface extends JpaRepository<ProductModel, Integer> {
 
     ProductModel findById(int id);
 

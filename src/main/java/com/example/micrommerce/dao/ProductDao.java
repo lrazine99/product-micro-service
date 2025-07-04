@@ -11,7 +11,7 @@ import com.example.micrommerce.model.ProductModel;
 public class ProductDao {
 
     @Autowired
-    private ProductInterface productRepository;
+    private ProductRepositoryInterface productRepository;
 
     public List<ProductModel> findAll() {
         return productRepository.findAll();
