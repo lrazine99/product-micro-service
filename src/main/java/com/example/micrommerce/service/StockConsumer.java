@@ -20,7 +20,7 @@ public class StockConsumer {
             Integer productId = Integer.parseInt(parts[0].split(":")[1].trim());
             Integer quantity = Integer.parseInt(parts[1].split(":")[1].trim());
             
-            ProductModel product = productDao.findById(productId).orElse(null);
+            ProductModel product = productDao.findById(productId);
             if (product != null && product.getQuantity() >= quantity) {
                 product.setQuantity(product.getQuantity() - quantity);
                 productDao.save(product);
