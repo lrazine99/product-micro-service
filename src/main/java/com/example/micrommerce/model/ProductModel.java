@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Table(name = "Product")
+@Table(name = "products")
 @Entity
 public class ProductModel {
     @Id
