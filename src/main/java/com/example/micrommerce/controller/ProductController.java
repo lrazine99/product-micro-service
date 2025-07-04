@@ -66,4 +66,20 @@ public class ProductController {
         productDao.deleteById(id);
         return ResponseEntity.ok("{\"message\":\"Product with id " + id + " deleted\", \"status\":200}");
     }
+
+    @PostMapping("/products/{id}/reduce-stock")
+    public ResponseEntity<String> reduceStock(@PathVariable int id, @RequestBody int quantity) {
+        boolean success = productDao.reduceStock(id, quantity);
+        if (success) {
+            return ResponseEntity.ok("{\"message\":\"Stock reduced successfully\", \"status\":200}");
+        } else {
+            return ResponseEntity.badRequest().body("{\"message\":\"Insufficient stock or product not found\", \"status\":400}");
+        }
+    }
+
+    @GetMapping("/products/{id}/check-stock/{quantity}")
+    public ResponseEntity<String> checkStock(@PathVariable int id, @PathVariable int quantity) {
+        boolean hasStock = productDao.hasStock(id, quantity);
+        return ResponseEntity.ok("{\"available\":" + hasStock + ", \"status\":200}");
+    }
 }

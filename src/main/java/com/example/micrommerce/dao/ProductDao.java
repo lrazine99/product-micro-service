@@ -32,4 +32,19 @@ public class ProductDao {
     public boolean existsById(int id) {
         return productRepository.existsById(id);
     }
+
+    public boolean reduceStock(int productId, int quantity) {
+        ProductModel product = productRepository.findById(productId);
+        if (product != null && product.getQuantity() >= quantity) {
+            product.setQuantity(product.getQuantity() - quantity);
+            productRepository.save(product);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasStock(int productId, int quantity) {
+        ProductModel product = productRepository.findById(productId);
+        return product != null && product.getQuantity() >= quantity;
+    }
 }
